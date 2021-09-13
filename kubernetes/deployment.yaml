@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+  labels:
+    app: blog
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blog
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+      - env:
+        image: kiro123/nginx-webserver:0.0.6
+        imagePullPolicy: Always
+        name: blog
+        ports:
+        - containerPort: 80
